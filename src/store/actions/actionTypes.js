@@ -1,0 +1,12 @@
+//Action Types
+export const GPIT_CONNECT = 'GPIT_CONNECT'
+export const SET_GPIT_CONNECT_RESULT = 'SET_GPIT_CONNECT_RESULT'
+
+export const INC_COUNTER = 'INC_COUNTER'
+export const DEC_COUNTER = 'DEC_COUNTER'
+
+//Header
+export const SET_HEADER_HEIGHT = 'SET_HEADER_HEIGHT'
+export const SET_HEADER_TAB = 'SET_HEADER_TAB'
+export const SET_HEADER_NAME = 'SET_HEADER_NAME'
+
