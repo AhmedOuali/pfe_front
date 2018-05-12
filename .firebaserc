@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "pfe-hr",
+    "pfe-hr": "pfe-hr"
+  }
+}

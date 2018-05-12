@@ -1,5 +1,5 @@
 import * as actionTypes from 'actionTypes'
-import * as Application from 'Application'
+import * as Application from '../../Application'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 
@@ -32,11 +32,6 @@ export const gpitConnect = user => {
     })
       .then(resp => resp.json())
       .then(function(res) {
-        var x = document.cookie
-        setTimeout(() => {
-          console.log('cookies', res.Cookies)
-        }, 1000)
-
         dispatch(setGpitConnectResult(res))
       })
       .catch(function(err) {

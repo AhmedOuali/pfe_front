@@ -18,7 +18,6 @@ const HeaderBorder = (props) => {
       textDecoration: "none",
       color: "black"}
   }
-    console.log(props)
     return ( 
       
       <ToolbarRow style={{ backgroundColor: 'white' }}>
@@ -31,7 +30,12 @@ const HeaderBorder = (props) => {
               <Link to='/' style={linkStyle}><ToolbarIcon style={{ color: 'black' }} use='close'/></Link>
             </ToolbarSection>
           )}}/>
-        
+          <Route path="/notifications" render={()=>{
+          return (
+            <ToolbarSection alignEnd>
+            <ToolbarIcon style={{ color: 'black' }} use='delete' onClick= {() => {props.setNotifications([])}}/>
+            </ToolbarSection>
+          )}}/>
       </ToolbarRow>
     )
 }

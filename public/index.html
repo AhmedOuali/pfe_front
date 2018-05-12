@@ -41,6 +41,49 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  <script>
+     subscribeUser = function (reg) {
+      reg.pushManager.subscribe({
+            userVisibleOnly: true
+          }).then(function(sub) {
+            console.log(sub);
+            
+            fetch('https://us-central1-pushser-a5465.cloudfunctions.net/notif/subscribe', {
+              method: 'post',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+              body: JSON.stringify({subscription: sub, name: 'ahmed'}),
+            }).then((response) => {
+              return response.json();
+            })
+          }).catch(function(e) {
+            if (Notification.permission === 'denied') {
+              console.warn('Permission for notifications was denied');
+            } else {
+              console.error('Unable to subscribe to push', e);
+            }
+          });
+      }
+ 
+
+        if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+             .register('serviceWorker.js', {
+                scope: '/'
+            })
+             .then(function(reg) { 
+               subscribeUser (reg)
+               console.log('Service Worker Registered' ); });
+  }
+  Notification.requestPermission(function(status) {
+    console.log('Notification permission status:', status);
+   
+});
+
+      </script>
+      
+    
     <script src="js/app/bundle.js"></script>
 
   </body>

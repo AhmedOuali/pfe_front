@@ -35,7 +35,7 @@ const HeaderTop = (props) => {
     }
     return ( 
               <TabBar 
-                onChange={(evnt) => tabBarOnchange(evnt.target.value)} 
+                 
                 activeTabIndex={props.tab}
                 style={{ width: '100%'}}>
                 <TabBarElement path= '/attente' name= 'En attente' icon= 'hourglass_empty'/>

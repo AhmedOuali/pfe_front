@@ -10,19 +10,25 @@ import {
 import FlatButton from 'material-ui/FlatButton'
 import PlusButton from './plusButton'
 import * as headerActionCreators from '../../../store/actions/header'
+import * as workspaceActionCreators from '../../../store/actions/workspace'
 import { connect } from 'react-redux'
 class Notifications extends Component {
     constructor(props) {
         super(props)
         props.setHeaderTab(2);
     }
+    componentWillMount() {
+      this.props.setNotifications(JSON.parse(localStorage.getItem('notifications')))
+    }
     render () {
         return (
-            <Fragment>
-            <Card style={{ marginTop: '7px' }}>
+          <Fragment>
+          { 
+          this.props.notifications.map((notification, index) => {
+          return <Card key= {index} style={{ marginTop: '7px' }}>
           <CardHeader
-            title="Votre demande est approuvée par l'expert-RH"
-            subtitle="Description: Recrutement de 'Morsi Jallouli'"
+            title= {notification.title}
+            subtitle=  {"Description: " +notification.content}
             actAsExpander={true}
           />
           
@@ -34,21 +40,9 @@ class Notifications extends Component {
             lobortis odio.
           </CardText>
         </Card>
-        <Card style={{ marginTop: '7px' }}>
-          <CardHeader
-            title="Votre demande est rejetée"
-            subtitle="Description: Recrutement de 'Khaled Garsi'"
-            actAsExpander={true}
-          />
-          
-          <CardText expandable={true}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            mattis pretium massa. Aliquam erat volutpat. Nulla facilisi. Donec
-            vulputate interdum sollicitudin. Nunc lacinia auctor quam sed
-            pellentesque. Aliquam dui mauris, mattis quis lacus id, pellentesque
-            lobortis odio.
-          </CardText>
-        </Card>
+          })
+          }
+            
         <PlusButton/>
         </Fragment>
         )
@@ -56,11 +50,15 @@ class Notifications extends Component {
 }
 const mapStateToProps = state => {
     return {
+      notifications: state.workspace.notifications,
       tab: state.header.tab
     }
   }
+  
 const mapDispatchToProps = dispatch => {
     return {
+      setNotifications : notifications => 
+        dispatch(workspaceActionCreators.setNotifications(notifications)),
       setHeaderTab : tab => 
         dispatch(headerActionCreators.setHeaderTab(tab))
     }

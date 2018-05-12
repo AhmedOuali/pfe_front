@@ -11,9 +11,11 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_GPIT_CONNECT_RESULT:
       if (action.data.status == 'OK') {
+        console.log('connected')
         return { connected: true }
       }
       if (action.data.status == 'FAILURE') {
+        console.log('failed')
         return { connected: false }
       }
       break

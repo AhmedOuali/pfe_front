@@ -22,7 +22,6 @@ import Create from './create/create'
 
 class Content extends Component {
   render() {
-    console.log('props', this.props.height)
     return (
 
       <ToolbarFixedAdjust>

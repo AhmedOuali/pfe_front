@@ -12,8 +12,7 @@ module.exports = {
       alias: {
         App: 'src/app.js',
         exempleOfStatelessComponents: 'src/components/exempleOfStatelessComponents.js',
-        actionTypes: 'src/store/actions/actionTypes.js',
-        Application : 'src/application.js'
+        actionTypes: 'src/store/actions/actionTypes.js'
       },
       extensions: ['', '.js', '.jsx']
     },

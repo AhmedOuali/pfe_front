@@ -10,3 +10,9 @@ export const SET_HEADER_HEIGHT = 'SET_HEADER_HEIGHT'
 export const SET_HEADER_TAB = 'SET_HEADER_TAB'
 export const SET_HEADER_NAME = 'SET_HEADER_NAME'
 
+//Notification
+export const SET_NOTIFICATIONS = 'SET_NOTIFICATIONS'
+export const ADD_NOTIFICATION = 'ADD_NOTIFICATION'
+
+//Connectivity
+export const SET_CONNECTIVITY= 'SET_CONNECTIVITY'
