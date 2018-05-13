@@ -18,7 +18,7 @@ const HeaderTop = (props) => {
     if ( props.type == 'CREATE' ) {
       return (
         <div style={{width: '100%',  margin: 'auto'}}>
-        <Stepper activeStep={0}>
+        <Stepper activeStep={props.step}>
           <Step style= {stepStyle}>
             <StepLabel >Information de base</StepLabel>
           </Step>

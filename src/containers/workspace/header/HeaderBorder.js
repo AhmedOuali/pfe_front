@@ -27,13 +27,20 @@ const HeaderBorder = (props) => {
         <Route path="/create" render={()=>{
           return (
             <ToolbarSection alignEnd>
-              <Link to='/' style={linkStyle}><ToolbarIcon style={{ color: 'black' }} use='close'/></Link>
+              <Link to='/' style={linkStyle}><ToolbarIcon style={{ color: 'black' }} onClick={() => props.setStepperNumber(0)} use='close'/></Link>
             </ToolbarSection>
           )}}/>
           <Route path="/notifications" render={()=>{
           return (
             <ToolbarSection alignEnd>
-            <ToolbarIcon style={{ color: 'black' }} use='delete' onClick= {() => {props.setNotifications([])}}/>
+            <ToolbarIcon 
+              style={{ color: 'black' }} use='delete' 
+              onClick= {() => {
+                props.setNotifications([])
+
+                }
+              }
+            />
             </ToolbarSection>
           )}}/>
       </ToolbarRow>

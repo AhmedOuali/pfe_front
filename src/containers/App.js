@@ -45,12 +45,18 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-            <RouteIf condition={this.props.connected}  path="/" component={Workspace} />
+            {/* <RouteIf condition={this.props.connected} path="/" component={Workspace} />
             <RouteIf condition={this.props.connected} path="/login" component={Login} />
             <RouteIf condition={this.props.connected} path="/attente" component={Workspace} />
             <RouteIf condition={this.props.connected} path="/historique" component={Workspace} />
             <RouteIf condition={this.props.connected} path="/notifications" component={Workspace} />
-            <RouteIf condition={this.props.connected} path="/create" component={Workspace} />
+            <RouteIf condition={this.props.connected} path="/create" component={Workspace} /> */}
+            <RouteIf condition={true} path="/" component={Workspace} />
+            <RouteIf condition={true} path="/login" component={Login} />
+            <RouteIf condition={true} path="/attente" component={Workspace} />
+            <RouteIf condition={true} path="/historique" component={Workspace} />
+            <RouteIf condition={true} path="/notifications" component={Workspace} />
+            <RouteIf condition={true} path="/create" component={Workspace} />
         </Fragment>
       </Router>
     )

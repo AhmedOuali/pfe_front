@@ -67,8 +67,8 @@ class Header extends Component {
                 onClose={evt => this.setState({menuIsOpen: false})}
               >
                 <MenuItem>Cookies</MenuItem>
-                <MenuItem>Pizza</MenuItem>
-                <MenuItem>Icecream</MenuItem>
+                <MenuItem>Notifications (ON)</MenuItem>
+                <MenuItem>LogOut</MenuItem>
               </Menu>
               <ToolbarIcon use="more_vert" style={{ marginTop: '-20px' }}  />
               
@@ -79,14 +79,14 @@ class Header extends Component {
           <Fragment>
             <ToolbarRow>
               <Switch>
-                <Route path="/create" render={() => {return <HeaderTop type='CREATE'/>}}  />
+                <Route path="/create" render={() => {return <HeaderTop type='CREATE' step = {this.props.stepperNumber}/>}}  />
                 <Route path="/" render={() => {return <HeaderTop type='DEFAULT' tab = {this.props.tab}/>}}  />
               </Switch>
             </ToolbarRow>
               <Route path="/attente" render={() => {return <HeaderBorder name='Attente'/>}}  />
               <Route path="/historique" render={() => {return <HeaderBorder name='Historique'/>}}/>
               <Route path="/notifications" render={() => {return <HeaderBorder name='Notifications' {...this.props}/>}}/>
-              <Route path="/create" render={() => {return <HeaderBorder name='Créer Dossier'/>}}/>
+              <Route path="/create" render={() => {return <HeaderBorder name='Créer Dossier' {...this.props}/>}}/>
           </Fragment>
       </Toolbar>
     )
@@ -98,7 +98,8 @@ const mapStateToProps = state => {
     height: state.header.height,
     tab: state.header.tab,
     username: state.header.username,
-    notifications: state.workspace.notifications
+    notifications: state.workspace.notifications,
+    stepperNumber: state.header.stepperNumber
   }
 }
 
@@ -112,6 +113,9 @@ const mapDispatchToProps = dispatch => {
       dispatch(headerActionCreators.setHeaderName(username)),
     setNotifications : notifications => 
         dispatch(workspaceActionCreators.setNotifications(notifications)),
+    setStepperNumber : step => {
+      dispatch(headerActionCreators.setStepperNumber(step))
+    }
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Header)

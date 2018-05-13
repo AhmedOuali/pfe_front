@@ -20,3 +20,10 @@ export const setHeaderName = data => {
     data: data
   }
 }
+
+export const setStepperNumber = data => {
+  return {
+    type: actionTypes.SET_STEPPER_NUMBER,
+    data: data
+  }
+}
