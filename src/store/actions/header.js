@@ -10,20 +10,20 @@ export const setHeaderHeight = data => {
 export const setHeaderTab = data => {
   return {
     type: actionTypes.SET_HEADER_TAB,
-    data: data
+    data: data,
   }
 }
 
 export const setHeaderName = data => {
   return {
     type: actionTypes.SET_HEADER_NAME,
-    data: data
+    data: data,
   }
 }
 
 export const setStepperNumber = data => {
   return {
     type: actionTypes.SET_STEPPER_NUMBER,
-    data: data
+    data: data,
   }
 }

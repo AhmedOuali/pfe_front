@@ -15,13 +15,13 @@ import thunk from 'redux-thunk'
 import * as midlewares from './middleware'
 
 // Fonction qui va etre executée par le middleware de redux
-
+// import StepOne from './containers/workspace/content/create/StepOne';
 // Création d'un rootReducer qui englobe les reducers elementaires
 const rootReducer = combineReducers({
   applicationApi: applicationApisReducer,
   ctr: counterReducer,
   header: headerReducer,
-  workspace: workspaceReducer
+  workspace: workspaceReducer,
 })
 
 // Mise en place de l'inspecteur react qui va se connecter à react-dev-tool extension
