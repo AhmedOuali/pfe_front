@@ -6,26 +6,28 @@ import * as counterActionCreators from '../store/actions/counter'
 import * as workspaceActionCreators from '../store/actions/workspace'
 import ExempleOfStatelessComponents from 'exempleOfStatelessComponents'
 import Workspace from './workspace/workspace'
+import Absence from './absence/absence'
 import Login from './login/login'
+import Home from './home'
 import Button from '@react-mdc/button'
 import 'material-components-web/dist/material-components-web.css'
 import logo from '../logo.svg'
 import './App.css'
 
 const RouteIf = ({ condition, path, component, props }) => {
-  if (path == '/login') {
-     if (condition) {
-        return <Redirect to="/"/>
-      }else {
-        return <Route exact path={path} component={component} {...props} />
-      }
-  } else {
-    if (!condition) {
-      return <Redirect to="/login"/>
-    } else {
+  // if (path === '/login') {
+  //    if (condition) {
+  //       return <Redirect to="/"/>
+  //     }else {
+  //       return <Route exact path={path} component={component} {...props} />
+  //     }
+  // } else {
+  //   if (!condition) {
+  //     return <Redirect to="/login"/>
+  //   } else {
       return <Route exact path={path} component={component} {...props} />
-    }
-  }
+  //   }
+  // }
  
 }
 
@@ -51,12 +53,17 @@ class App extends Component {
             <RouteIf condition={this.props.connected} path="/historique" component={Workspace} />
             <RouteIf condition={this.props.connected} path="/notifications" component={Workspace} />
             <RouteIf condition={this.props.connected} path="/create" component={Workspace} /> */}
-            <RouteIf condition={true} path="/" component={Workspace} />
             <RouteIf condition={true} path="/login" component={Login} />
-            <RouteIf condition={true} path="/attente" component={Workspace} />
-            <RouteIf condition={true} path="/historique" component={Workspace} />
-            <RouteIf condition={true} path="/notifications" component={Workspace} />
-            <RouteIf condition={true} path="/create" component={Workspace} />
+            <RouteIf condition={true} path="/home" component={Home} />
+            <RouteIf condition={true} path="/embauche" component={Workspace} />
+            <RouteIf condition={true} path="/embauche/attente" component={Workspace} />
+            <RouteIf condition={true} path="/embauche/historique" component={Workspace} />
+            <RouteIf condition={true} path="/embauche/notifications" component={Workspace} />
+            <RouteIf condition={true} path="/embauche/create" component={Workspace} />
+            <RouteIf condition={true} path="/absence" component={Absence} />
+            <RouteIf condition={true} path="/absence/attente" component={Absence} />
+            <RouteIf condition={true} path="/absence/historique" component={Absence} />
+            <RouteIf condition={true} path="/absence/notifications" component={Absence} />
         </Fragment>
       </Router>
     )

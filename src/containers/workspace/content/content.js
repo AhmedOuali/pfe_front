@@ -1,6 +1,11 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Route, Redirect, Switch  } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom'
 import { Snackbar } from 'rmwc/Snackbar'
 import 'material-components-web/dist/material-components-web.css'
 import './content.css'
@@ -23,17 +28,35 @@ import Create from './create/create'
 class Content extends Component {
   render() {
     return (
-
       <ToolbarFixedAdjust>
-        <Switch>  
-          <Route path="/attente" render={() => {return <Attente tab='0'/>}}  />
-          <Route path="/historique" render={() => {return <Historique tab='1'/>}}/>
-          <Route path="/notifications" render={() => {return <Notifications tab='2'/>}}/>
-          <Route path="/create" render= {() => {return <Create/>}}/>
-          <Redirect to="/attente"/>
-        </Switch> 
+        <Switch>
+          <Route
+            path="/embauche/attente"
+            render={() => {
+              return <Attente tab="0" />
+            }}
+          />
+          <Route
+            path="/embauche/historique"
+            render={() => {
+              return <Historique tab="1" />
+            }}
+          />
+          <Route
+            path="/embauche/notifications"
+            render={() => {
+              return <Notifications tab="2" />
+            }}
+          />
+          <Route
+            path="/embauche/create"
+            render={() => {
+              return <Create />
+            }}
+          />
+          <Redirect to="/embauche/attente" />
+        </Switch>
       </ToolbarFixedAdjust>
-
     )
   }
 }

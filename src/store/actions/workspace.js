@@ -8,15 +8,15 @@ export const setNotifications = data => {
 }
 
 export const addNotification = data => {
-    return {
-        type: actionTypes.ADD_NOTIFICATION,
-        data: data
-    }
+  return {
+    type: actionTypes.ADD_NOTIFICATION,
+    data: data,
+  }
 }
 
 export const setConnectivity = data => {
   return {
     type: actionTypes.SET_CONNECTIVITY,
-    data: data
+    data: data,
   }
 }

@@ -5,13 +5,13 @@ var cacheName = 'PFE-Ahmed-Nesrine';
 var BASE_CACHE_FILES = [
     '/',
   '/index.html',
-  '/js/app/bundle.js',
+  //'/js/app/bundle.js',
   '/log-144x144.png',
 ];
 
 const OFFLINE_CACHE_FILES = [
   '/index.html',
-  '/js/app/bundle.js',
+  //'/js/app/bundle.js',
   '/log-144x144.png',
 ];
 
@@ -42,9 +42,9 @@ const MAX_TTL = {
 };
 
 const CACHE_BLACKLIST = [
-    //(str) => {
-    //    return !str.startsWith('http://localhost') && !str.startsWith('https://gohugohq.com');
-    //},
+    (str) => {
+       return !str.startsWith('localhost')
+    },
 ];
 
 const SUPPORTED_METHODS = [

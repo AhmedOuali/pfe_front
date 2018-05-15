@@ -19,34 +19,37 @@ import { Grid, GridCell } from 'rmwc/Grid'
 import { TextField } from 'rmwc/TextField'
 
 class Login extends Component {
-  constructor (props) {
-    super (props)
+  constructor(props) {
+    super(props)
     this.state = {
-      user: "",
-      password: ""
+      user: '',
+      password: '',
     }
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
-  
+
   handleChange(event) {
     switch (event.target.id) {
-      case "USER": 
+      case 'USER':
         this.setState({
-          user : event.target.value
+          user: event.target.value,
         })
-      break;
-      
-      case "PASS":
+        break
+
+      case 'PASS':
         this.setState({
-          password: event.target.value
+          password: event.target.value,
         })
-      break;
-    } 
+        break
+    }
   }
-  
+
   handleSubmit() {
-    this.props.gpitConnect({username: this.state.user, password: this.state.password})
+    this.props.gpitConnect({
+      username: this.state.user,
+      password: this.state.password,
+    })
   }
 
   render() {
@@ -69,11 +72,20 @@ class Login extends Component {
           <Grid>
             <GridCell span="1" />
             <GridCell span="2" align="middle">
-            
-              <TextField label="Nom d'utilisateur..." id="USER" value={this.state.user} onChange={this.handleChange}/>
+              <TextField
+                label="Nom d'utilisateur..."
+                id="USER"
+                value={this.state.user}
+                onChange={this.handleChange}
+              />
               <br />
-              <TextField type="password" id="PASS" label="Mot de passe..." value={this.state.password} onChange={this.handleChange}/>
-            
+              <TextField
+                type="password"
+                id="PASS"
+                label="Mot de passe..."
+                value={this.state.password}
+                onChange={this.handleChange}
+              />
             </GridCell>
             <GridCell span="1" />
             <GridCell span="1" />
@@ -85,7 +97,6 @@ class Login extends Component {
               >
                 Se Connecter
               </Button>
-              
             </GridCell>
           </Grid>
         </ToolbarFixedAdjust>
@@ -95,16 +106,16 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-      connected: state.applicationApi.connected
-    }
+  return {
+    connected: state.applicationApi.connected,
   }
-  
+}
+
 const mapDispatchToProps = dispatch => {
-    return {
-      gpitConnect : user => 
-        dispatch(applicationApisActionCreators.gpitConnect(user)),
-    }
+  return {
+    gpitConnect: user =>
+      dispatch(applicationApisActionCreators.gpitConnect(user)),
   }
-  
-export default connect(mapStateToProps,mapDispatchToProps)(Login)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
   applicationApi: applicationApisReducer,
   ctr: counterReducer,
   header: headerReducer,
-  workspace: workspaceReducer
+  workspace: workspaceReducer,
 })
 
 // Mise en place de l'inspecteur react qui va se connecter à react-dev-tool extension

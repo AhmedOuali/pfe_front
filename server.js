@@ -22,6 +22,7 @@ app.use('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 })
 
+
 app.listen(3000, function () {
   console.log('Express server is up on port 3000');
 });
