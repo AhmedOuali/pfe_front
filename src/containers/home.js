@@ -1,12 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import Header from './workspace/header/header'
+import { connect } from 'react-redux'
+import * as applicationApisActionCreators from '../store/actions/applicationApis'
+import * as headerActionCreators from '../store/actions/header'
+
 import {
-    BrowserRouter as Router,
-    Route,
-    Redirect,
-    Switch,
-    Link
-  } from 'react-router-dom'
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+  Link,
+} from 'react-router-dom'
 import {
   Toolbar,
   ToolbarRow,
@@ -32,15 +36,23 @@ import { Icon } from 'rmwc/Icon'
 import { Typography } from 'rmwc/Typography'
 
 class Home extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-          user: '',
-          password: '',
-        }
-
-      }
-      
+  constructor(props) {
+    super(props)
+    this.state = {
+      user: '',
+      password: '',
+      categorie: true,
+    }
+    this.handleOnRuleChange = this.handleOnRuleChange.bind(this)
+  }
+  componentWillMount() {}
+  handleOnRuleChange() {
+    if (this.props.selectedRole == 'admin') {
+      this.props.setUserRole('employee')
+    } else if (this.props.selectedRole == 'employee') {
+      this.props.setUserRole('admin')
+    }
+  }
   render() {
     var iconStyle = {
       fontSize: '36px',
@@ -58,7 +70,69 @@ class Home extends Component {
         color: 'black',
       },
     }
+    const Embauche = props => {
+      return (
+        <Link to="/embauche" style={linkStyle}>
+          <CardPrimaryAction id="EMBAUCHE">
+            <div
+              style={{
+                padding: '1rem',
+                height: '150px',
+                backgroundColor: '#e4e4e466',
+              }}
+            >
+              <Typography
+                use="headline4"
+                style={{ fontSize: '20px' }}
+                tag="div"
+              >
+                Embaucher un salarié
+              </Typography>
+              <Typography
+                use="body1"
+                tag="p"
+                theme="text-secondary-on-background"
+              >
+                , Copper price soars amid global market optimism and increased
+                demand.
+              </Typography>
+            </div>
+          </CardPrimaryAction>
+        </Link>
+      )
+    }
 
+    const Absence = props => {
+      return (
+        <Link to="/absence" style={linkStyle}>
+          <CardPrimaryAction id="ABSENCE">
+            <div
+              style={{
+                padding: '1rem',
+                height: '150px',
+                backgroundColor: '#e4e4e466',
+              }}
+            >
+              <Typography
+                use="headline4"
+                style={{ fontSize: '20px' }}
+                tag="div"
+              >
+                Gestion d'absences
+              </Typography>
+              <Typography
+                use="body1"
+                tag="p"
+                theme="text-secondary-on-background"
+              >
+                , Copper price soars amid global market optimism and increased
+                demand.
+              </Typography>
+            </div>
+          </CardPrimaryAction>
+        </Link>
+      )
+    }
     return (
       <Fragment>
         <Toolbar id="Toolbar" style={{ backgroundColor: '#d1021a' }} fixed>
@@ -66,14 +140,17 @@ class Home extends Component {
             <ToolbarSection alignStart>
               <ToolbarMenuIcon>
                 <i
+                  onClick={this.handleOnRuleChange}
                   className="material-icons"
                   style={{ fontSize: '40px', marginTop: '-13px' }}
                 >
-                  account_circle
+                  {this.props.selectedRole == 'admin'
+                    ? 'account_circle'
+                    : 'supervisor_account'}
                 </i>
               </ToolbarMenuIcon>
               <ToolbarTitle style={{ fontSize: '1rem' }}>
-                Mohamed DAI
+                {this.props.username}
               </ToolbarTitle>
             </ToolbarSection>
             <ToolbarSection alignEnd>
@@ -123,7 +200,7 @@ class Home extends Component {
                 }}
                 theme="text-primary-on-light"
               >
-                Bienvenue, Mohamed !
+                Bienvenue, {this.props.username} !
               </Typography>
               <Typography
                 use="headline5"
@@ -131,58 +208,25 @@ class Home extends Component {
                 style={{ padding: '0.5rem 0.5rem', textAlign: 'center' }}
                 theme="text-secondary-on-background"
               >
-                Bienvenue, Mohamed !
+                {this.props.selectedRole == 'admin'
+                  ? 'Vous etes connecté (Manager)'
+                  : this.props.selectedRole == 'employee'
+                    ? 'Vous etes connecté (Collaborateur)'
+                    : ''}
               </Typography>
 
               <ListDivider />
-              <Link to="/embauche" style={linkStyle}>
-              <CardPrimaryAction id="EMBAUCHE" >
-                <div
-                  style={{
-                    padding: '1rem',
-                    height: '150px',
-                    backgroundColor: '#e4e4e466',
-                  }}
-                >
-                  <Typography use="headline4" style={{fontSize:"20px"}} tag="div">
-                    Embaucher un salarié 
-                  </Typography>
-                  <Typography
-                    use="body1"
-                    tag="p"
-                    theme="text-secondary-on-background"
-                  >
-                    , Copper price soars amid global market optimism and
-                    increased demand.
-                  </Typography>
-                </div>
-              </CardPrimaryAction>
-              </Link>
-              <ListDivider />
-              <Link to="/absence" style={linkStyle}>
-              <CardPrimaryAction id="ABSENCE">
-                <div
-                  style={{
-                    padding: '1rem',
-                    height: '150px',
-                    backgroundColor: '#e4e4e466',
-                  }}
-                >
-                  <Typography use="headline4" style={{fontSize:"20px"}} tag="div">
-                    Gestion d'absences
-                  </Typography>
-                  <Typography
-                    use="body1"
-                    tag="p"
-                    theme="text-secondary-on-background"
-                  >
-                    , Copper price soars amid global market optimism and
-                    increased demand.
-                  </Typography>
-                </div>
-              </CardPrimaryAction>
-              </Link>
-
+              {this.props.selectedRole == 'admin' ? (
+                <Fragment>
+                  <Embauche />
+                  <Absence />
+                  <ListDivider />
+                </Fragment>
+              ) : this.props.selectedRole == 'employee' ? (
+                <Absence />
+              ) : (
+                <Fragment />
+              )}
             </Card>
           </div>
         </ToolbarFixedAdjust>
@@ -190,4 +234,24 @@ class Home extends Component {
     )
   }
 }
-export default Home
+const mapStateToProps = state => {
+  return {
+    roles: state.applicationApi.roles,
+    isAdmin: state.applicationApi.isAdmin,
+    isEmployee: state.applicationApi.isEmployee,
+    selectedRole: state.applicationApi.selectedRole,
+    username: state.header.username,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setHeaderName: username =>
+      dispatch(headerActionCreators.setHeaderName(username)),
+    setUserRole: role =>
+      dispatch(applicationApisActionCreators.setUserRole(role)),
+    setNudossNumber: nudossNumber =>
+      dispatch(applicationApisActionCreators.setNudossNumber(nudossNumber)),
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

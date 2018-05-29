@@ -19,6 +19,7 @@ import { connect } from 'react-redux'
 import * as headerActionCreators from '../../../../store/actions/header'
 
 const Footer = props => {
+  console.log('here the state', props)
   const incStepper = () => {
     if (props.stepperNumber < 3) {
       props.setStepperNumber(props.stepperNumber + 1)
@@ -29,6 +30,45 @@ const Footer = props => {
     if (props.stepperNumber > 0) {
       props.setStepperNumber(props.stepperNumber - 1)
     }
+  }
+
+  const handleClick = () => {
+    console.log('click')
+    var absence = {
+      occurrences: {
+        occurrence: [
+          {
+            '@action': 'C',
+            '@datasection': 'Z5A1',
+            '@domain': 'PROCESS',
+            '@dossier': '58565',
+            '@population': 'WORKFLOW',
+            data: [
+              { item: 'calledWS', value: 0 },
+              { item: 'elementRequired', value: true },
+              { item: 'MOTIFA', value: props.type },
+              { item: 'DATDEB', value: props.premier },
+              { item: 'DATFIN', value: props.dernier },
+              { item: 'hasError', value: false },
+              { item: 'messageServer', value: false },
+            ],
+          },
+        ],
+      },
+    }
+    if (props.ram) {
+      absence.occurrences.occurrence[0].data.push({
+        item: 'TEMFIN',
+        value: 'X',
+      })
+    }
+    if (props.pam) {
+      absence.occurrences.occurrence[0].data.push({
+        item: 'TEMDEB',
+        value: 'X',
+      })
+    }
+    props.creerAbsence(absence)
   }
   return (
     <Toolbar
@@ -45,35 +85,14 @@ const Footer = props => {
         <ToolbarTitle text="Enregistrée" />
         <div
           style={{
-            width: '215px',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
         >
           <RaisedButton
-            label="Precedant"
-            labelPosition="before"
-            onClick={decStepper}
-            labelColor="#f27308"
-            backgroundColor="#e4e4e4"
-            style={{ margin: '10px 0px', backgroundColor: '#e4e4e4' }}
-            disabled={
-              props.stepperNumber === 3
-                ? true
-                : props.stepperNumber === 0 ? true : false
-            }
-          />
-          <ToolbarSeparator
-            style={{ marginLeft: '-36px', marginRight: '-35px' }}
-          />
-          <RaisedButton
-            label={
-              props.stepperNumber === 2
-                ? ''
-                : props.stepperNumber === 3 ? '' : 'Suivant'
-            }
-            onClick={incStepper}
+            label="Envoyer"
+            onClick={handleClick}
             labelColor="#f27308"
             backgroundColor={
               props.stepperNumber >= 2 ? 'rgba(0, 0, 0, 0.87)' : '#e4e4e4'

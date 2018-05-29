@@ -26,16 +26,24 @@ const HeaderBorder = props => {
         <ToolbarTitle style={{ color: 'black' }}>{props.name}</ToolbarTitle>
       </ToolbarSection>
       <Route
-        path="/absence/create"
+        path="/absence/demande_absence"
         render={() => {
           return (
             <ToolbarSection alignEnd>
-              <Link to="/absence" style={linkStyle}>
-                <ToolbarIcon
-                  style={{ color: 'black' }}
-                  onClick={() => props.setStepperNumber(0)}
-                  use="close"
-                />
+              <Link to="/absence/accueil" style={linkStyle}>
+                <ToolbarIcon style={{ color: 'black' }} use="close" />
+              </Link>
+            </ToolbarSection>
+          )
+        }}
+      />
+      <Route
+        path="/absence/annulation_absence"
+        render={() => {
+          return (
+            <ToolbarSection alignEnd>
+              <Link to="/absence/accueil" style={linkStyle}>
+                <ToolbarIcon style={{ color: 'black' }} use="close" />
               </Link>
             </ToolbarSection>
           )

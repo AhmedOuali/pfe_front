@@ -15,7 +15,7 @@ import thunk from 'redux-thunk'
 import * as midlewares from './middleware'
 
 // Fonction qui va etre executée par le middleware de redux
-
+// import StepOne from './containers/workspace/content/create/StepOne';
 // Création d'un rootReducer qui englobe les reducers elementaires
 const rootReducer = combineReducers({
   applicationApi: applicationApisReducer,

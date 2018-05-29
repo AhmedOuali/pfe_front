@@ -2,7 +2,7 @@ import * as actionTypes from 'actionTypes'
 const initialState = {
   height: 0,
   tab: 0,
-  username: 'Mohamed DAI',
+  username: '',
   stepperNumber: 0,
   allowNotifications: true,
 }
@@ -35,12 +35,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         stepperNumber: action.data,
       }
-      break;
+      break
     case actionTypes.SET_ALLOW_NOTIFICATIONS:
       return {
         ...state,
         allowNotifications: action.data,
-      };
+      }
   }
   return state
 }

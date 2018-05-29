@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 class Notifications extends Component {
   constructor(props) {
     super(props)
-    props.setHeaderTab(2)
+    props.setHeaderTab(3)
   }
   componentWillMount() {
     this.props.setNotifications(
@@ -44,7 +44,6 @@ class Notifications extends Component {
             </Card>
           )
         })}
-
       </Fragment>
     )
   }

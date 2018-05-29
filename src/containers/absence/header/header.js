@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import * as headerActionCreators from '../../../store/actions/header'
 import * as workspaceActionCreators from '../../../store/actions/workspace'
+import * as applicationApisActionCreators from '../../../store/actions/applicationApis'
 import styles from './header.css'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
 import { TabBar } from 'rmwc/Tabs'
@@ -26,9 +27,10 @@ var iconStyle = {
 }
 
 class Header extends Component {
-  constructor (props) {
-    super (props)
+  constructor(props) {
+    super(props)
     this.handleOnClick = this.handleOnClick.bind(this)
+    this.handleOnRuleChange = this.handleOnRuleChange.bind(this)
   }
   componentWillMount() {
     this.setState({ menuIsOpen: false })
@@ -36,10 +38,16 @@ class Header extends Component {
   componentDidMount() {
     let elHeight = document.getElementById('Toolbar').clientHeight
   }
-  
-  handleOnClick () {
-    console.log('test')
+
+  handleOnClick() {
     this.props.setAllowNotifications(!this.allowNotifications)
+  }
+  handleOnRuleChange() {
+    if (this.props.selectedRole == 'admin') {
+      this.props.setUserRole('employee')
+    } else if (this.props.selectedRole == 'employee') {
+      this.props.setUserRole('admin')
+    }
   }
   render() {
     const linkStyle = {
@@ -62,15 +70,18 @@ class Header extends Component {
     console.log('state', this.state)
 
     return (
-      <Toolbar id="Toolbar" style={{ backgroundColor: '#d1021a' }} fixed>
+      <Toolbar id="Toolbar" style={{ backgroundColor: '#385aa1' }} fixed>
         <ToolbarRow>
           <ToolbarSection alignStart>
             <ToolbarMenuIcon>
               <i
+                onClick={this.handleOnRuleChange}
                 className="material-icons"
                 style={{ fontSize: '40px', marginTop: '-13px' }}
               >
-                account_circle
+                {this.props.selectedRole == 'admin'
+                  ? 'account_circle'
+                  : 'supervisor_account'}
               </i>
             </ToolbarMenuIcon>
             <ToolbarTitle style={{ fontSize: '1rem' }}>
@@ -89,9 +100,18 @@ class Header extends Component {
                 open={this.state.menuIsOpen}
                 onClose={evt => this.setState({ menuIsOpen: false })}
               >
-                <Link to="/home" style={linkStyle}><MenuItem>Menu principal</MenuItem></Link>
-                <div onClick = {this.handleOnClick}><MenuItem >Notifications {this.props.allowNotifications? "(ON)":"(OFF)"}</MenuItem></div>
-                <Link to="/login" style={linkStyle}><MenuItem>LogOut</MenuItem></Link>
+                <Link to="/home" style={linkStyle}>
+                  <MenuItem>Menu principal</MenuItem>
+                </Link>
+                <div onClick={this.handleOnClick}>
+                  <MenuItem>
+                    Notifications{' '}
+                    {this.props.allowNotifications ? '(ON)' : '(OFF)'}
+                  </MenuItem>
+                </div>
+                <Link to="/login" style={linkStyle}>
+                  <MenuItem>LogOut</MenuItem>
+                </Link>
                 <MenuItem>A propos</MenuItem>
               </Menu>
               <ToolbarIcon use="more_vert" style={{ marginTop: '-20px' }} />
@@ -118,6 +138,18 @@ class Header extends Component {
             </Switch>
           </ToolbarRow>
           <Route
+            path="/absence/demande_absence"
+            render={() => {
+              return <HeaderBorder name="Demande d'absence" />
+            }}
+          />
+          <Route
+            path="/absence/annulation_absence"
+            render={() => {
+              return <HeaderBorder name="Annulation d'absence" />
+            }}
+          />
+          <Route
             path="/absence/attente"
             render={() => {
               return <HeaderBorder name="Attente" />
@@ -133,6 +165,12 @@ class Header extends Component {
             path="/absence/notifications"
             render={() => {
               return <HeaderBorder name="Notifications" {...this.props} />
+            }}
+          />
+          <Route
+            path="/absence/accueil"
+            render={() => {
+              return <HeaderBorder name="Accueil" {...this.props} />
             }}
           />
           <Route
@@ -154,12 +192,17 @@ const mapStateToProps = state => {
     username: state.header.username,
     notifications: state.workspace.notifications,
     stepperNumber: state.header.stepperNumber,
-    allowNotifications: state.header.allowNotifications
+    allowNotifications: state.header.allowNotifications,
+    isAdmin: state.applicationApi.isAdmin,
+    isEmployee: state.applicationApi.isEmployee,
+    selectedRole: state.applicationApi.selectedRole,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
+    setUserRole: role =>
+      dispatch(applicationApisActionCreators.setUserRole(role)),
     setHeaderHeight: height =>
       dispatch(headerActionCreators.setHeaderHeight(height)),
     setHeaderTab: tab => dispatch(headerActionCreators.setHeaderTab(tab)),

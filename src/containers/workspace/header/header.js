@@ -26,13 +26,19 @@ var iconStyle = {
 }
 
 class Header extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      categorie: true,
+    }
+  }
   componentWillMount() {
     this.setState({ menuIsOpen: false })
   }
   componentDidMount() {
     let elHeight = document.getElementById('Toolbar').clientHeight
   }
-  
+
   render() {
     const linkStyle = {
       textDecoration: 'none',
@@ -59,10 +65,11 @@ class Header extends Component {
           <ToolbarSection alignStart>
             <ToolbarMenuIcon>
               <i
+                onClick={() => console.log(this.state.categorie)}
                 className="material-icons"
                 style={{ fontSize: '40px', marginTop: '-13px' }}
               >
-                account_circle
+                {this.state.categorie ? 'account_circle' : 'supervisor_account'}
               </i>
             </ToolbarMenuIcon>
             <ToolbarTitle style={{ fontSize: '1rem' }}>
@@ -81,9 +88,13 @@ class Header extends Component {
                 open={this.state.menuIsOpen}
                 onClose={evt => this.setState({ menuIsOpen: false })}
               >
-                <Link to="/home" style={linkStyle}><MenuItem>Menu principal</MenuItem></Link>
+                <Link to="/home" style={linkStyle}>
+                  <MenuItem>Menu principal</MenuItem>
+                </Link>
                 <MenuItem>Notifications (ON)</MenuItem>
-                <Link to="/login" style={linkStyle}><MenuItem>LogOut</MenuItem></Link>
+                <Link to="/login" style={linkStyle}>
+                  <MenuItem>LogOut</MenuItem>
+                </Link>
               </Menu>
               <ToolbarIcon use="more_vert" style={{ marginTop: '-20px' }} />
             </MenuAnchor>

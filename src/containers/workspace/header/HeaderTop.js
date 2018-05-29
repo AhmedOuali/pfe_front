@@ -15,13 +15,13 @@ const HeaderTop = props => {
       <div style={{ width: '100%', margin: 'auto' }}>
         <Stepper activeStep={props.step}>
           <Step style={stepStyle}>
-            <StepLabel>Information de base</StepLabel>
+            <StepLabel> Donnée Personnelles </StepLabel>
           </Step>
           <Step style={stepStyle}>
-            <StepLabel>Etape suivante</StepLabel>
+            <StepLabel>Nationalité & Adresse</StepLabel>
           </Step>
           <Step style={stepStyle}>
-            <StepLabel>Etape finale</StepLabel>
+            <StepLabel>Affectation</StepLabel>
           </Step>
         </Stepper>
       </div>
@@ -29,8 +29,16 @@ const HeaderTop = props => {
   }
   return (
     <TabBar activeTabIndex={props.tab} style={{ width: '100%' }}>
-      <TabBarElement path="/embauche/attente" name="En attente" icon="hourglass_empty" />
-      <TabBarElement path="/embauche/historique" name="historique" icon="history" />
+      <TabBarElement
+        path="/embauche/attente"
+        name="En attente"
+        icon="hourglass_empty"
+      />
+      <TabBarElement
+        path="/embauche/historique"
+        name="historique"
+        icon="history"
+      />
       <TabBarElement
         path="/embauche/notifications"
         name="Notifications"

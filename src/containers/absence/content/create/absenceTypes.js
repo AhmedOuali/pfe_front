@@ -1,0 +1,14 @@
+export const CL2 = { value: 'CL2', description: 'CP -Ouvré- J-D' }
+export const CL1 = { value: 'CL1', description: 'CP-Ouvrable-J-M' }
+export const CA1 = { value: 'CA1', description: 'CPA-Ouvrable-J-M' }
+export const CA2 = { value: 'CA2', description: 'CPA-Ouvré-J-D' }
+export const CAZ = { value: 'CAZ', description: 'CPA-Ouvré-J-D' }
+export const CA3 = { value: 'CA3', description: 'CPF-Ouvré-J-D' }
+export const CF2 = { value: 'CF2', description: 'CPF - Ouvré-J-D' }
+export const CF1 = { value: 'CF1', description: 'CPF-Ouvrable-J-M' }
+export const CAN = { value: 'CAN', description: "FRP-Congé d'ancien" }
+export const CPN = { value: 'CPN', description: 'FRP-Congé payé' }
+export const RTT = { value: 'RTT', description: 'FRP-RTT' }
+export const RJ2 = { value: 'RJ2', description: 'RTT- Ouvré J-D' }
+export const RJX = { value: 'RJX', description: 'RTT- Ouvré J-D' }
+export const RJ1 = { value: 'RJ1', description: 'RTT-Ouvrable-J-M' }

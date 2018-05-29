@@ -1,0 +1,68 @@
+.form {
+    padding-top: 7px;
+    padding-bottom: 35px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.questionSpace {
+    padding-top: 0px;
+
+}
+
+.tab {
+    width: 90%;
+}
+
+.column {
+    width: 30px;
+}
+
+.text {
+    text-align: center;
+}
+
+.addImg {
+    padding-top: 15px;
+    padding-left: 160px;
+}
+
+.drop {
+    width: 150px;
+}
+
+.row {
+    display: inline;
+}
+
+.rowtext {
+    width: 70px;
+    padding-top: 23px;
+}
+
+.tddrop {
+    padding-top: 20px;
+    padding-left: 10px;
+}
+
+.width {
+    width: 100px;
+    padding-top: 20px;
+
+
+}
+
+.postal {
+    padding-bottom: 10px;
+
+}
+
+.unité {
+    margin-bottom: 5px;
+
+}
+
+.titre {
+    text-align: center;
+
+}
