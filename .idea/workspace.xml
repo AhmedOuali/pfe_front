@@ -1,55 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3e5fda80-9dea-419b-ba59-cfbd2c2cb1cd" name="Default" comment="" />
-    <ignored path="$PROJECT_DIR$/.tmp/" />
-    <ignored path="$PROJECT_DIR$/temp/" />
-    <ignored path="$PROJECT_DIR$/tmp/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
+    <list default="true" id="3e5fda80-9dea-419b-ba59-cfbd2c2cb1cd" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app/bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app/bundle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/serviceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/serviceWorker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/AppNoStyle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/absence/content/accueil.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/absence/content/accueil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/absence/content/attente.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/absence/content/content.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/absence/content/content.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/absence/content/create/Footer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/absence/content/create/Footer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/absence/content/create/create.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/absence/content/create/create.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/absence/content/delete/delete.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/absence/content/delete/delete.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/absence/content/historique/absenceDataTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/absence/content/historique/absenceDataTable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/absence/header/HeaderTop.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/absence/header/HeaderTop.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/absence/header/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/absence/header/header.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/login/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/containers/workspace/workspace.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/workspace/workspace.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/actionTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/actions/applicationApis.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/applicationApis.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/reducers/applicationApis.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/applicationApis.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
-  <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="11" lean-forward="false" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-              <folding>
-                <element signature="e#0#25#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/containers/App.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="12" lean-forward="true" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#50#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="28" lean-forward="true" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -76,6 +62,7 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
+  <component name="ProjectId" id="1pw97tkfdO3d9mbCmtwJUDbO2C7" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -109,31 +96,19 @@
       <pane id="Scratches" />
     </panes>
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="HbShouldOpenHtmlAsHb" value="" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="D:\My_Projects\Pfe_React\node_modules\prettier" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -143,6 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1521713087584</updated>
       <workItem from="1521713089003" duration="4093000" />
+      <workItem from="1616083125802" duration="247000" />
     </task>
     <servers />
   </component>
@@ -173,14 +149,18 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="3" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package.json">

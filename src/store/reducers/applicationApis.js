@@ -1,4 +1,5 @@
 import * as actionTypes from 'actionTypes'
+import * as constants from '../../constants'
 import {
   BrowserRouter as Router,
   Route,
@@ -6,8 +7,7 @@ import {
   Switch,
 } from 'react-router-dom'
 const initialState = {
-  loginPath:
-    'http://localhost:8080/hr-business-services-rest/business-services/login',
+  loginPath: constants.BASE_ADRESS+'login',
   connected: false,
   isManager: [],
   isEmployee: [],
@@ -17,6 +17,9 @@ const initialState = {
   nudossNumber: 0,
   collaborators: [],
   collaboratorsHistory: [],
+  managerTasks: [],
+  requests: [],
+  requestsToCancel: [] 
 }
 
 // Application Apis reducer
@@ -29,11 +32,11 @@ const reducer = (state = initialState, action) => {
         var isEmployee
         var selectedRole
         isAdmin = action.data.roles.role.filter(
-          role => role['@category'] == 'SSMNG'
+          role => role['@model'] == 'MMGRHIE'
         )
 
         isEmployee = action.data.roles.role.filter(
-          role => role['@category'] == 'SSEMP'
+          role => role['@model'] == 'EMPLOYEE'
         )
         if (isAdmin !== null) {
           selectedRole = 'admin'
@@ -41,11 +44,12 @@ const reducer = (state = initialState, action) => {
           selectedRole = 'employee'
         }
         return {
+          ...state,
           connected: true,
           roles: action.data.roles.role,
           isAdmin: isAdmin,
           isEmployee: isEmployee,
-          selectedRole: selectedRole,
+          selectedRole: selectedRole
         }
       }
       if (action.data.status == 'FAILURE') {
@@ -55,7 +59,9 @@ const reducer = (state = initialState, action) => {
       break
 
     case actionTypes.GPIT_CONNECT:
-      return {}
+      return {
+        ...state
+      }
       break
     case actionTypes.SET_USER_ROLE:
       return {
@@ -82,11 +88,28 @@ const reducer = (state = initialState, action) => {
       }
       break
     case actionTypes.SET_COLLABORATORS_HISTORY:
-      console.log('here state', action.data)
       return {
         ...state,
         collaboratorsHistory: action.data,
       }
+      break
+    case actionTypes.SET_MANAGER_TASKS:
+      return {
+        ...state,
+        managerTasks: action.data
+      }
+      break
+    case actionTypes.SET_REQUESTS:
+    return {
+      ...state,
+      requests: action.data
+    }
+      break
+    case actionTypes.SET_REQUESTS_TO_CANCEL:
+    return {
+      ...state,
+      requestsToCancel: action.data
+    }
   }
   return state
 }

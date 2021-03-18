@@ -71,7 +71,7 @@ class Header extends Component {
 
     return (
       <Toolbar id="Toolbar" style={{ backgroundColor: '#385aa1' }} fixed>
-        <ToolbarRow>
+        <ToolbarRow style={{minHeight:"54px"}}>
           <ToolbarSection alignStart>
             <ToolbarMenuIcon>
               <i
@@ -109,9 +109,9 @@ class Header extends Component {
                     {this.props.allowNotifications ? '(ON)' : '(OFF)'}
                   </MenuItem>
                 </div>
-                <Link to="/login" style={linkStyle}>
-                  <MenuItem>LogOut</MenuItem>
-                </Link>
+                
+                  <MenuItem onClick={() => window.location.href = "/home"}>LogOut</MenuItem>
+                
                 <MenuItem>A propos</MenuItem>
               </Menu>
               <ToolbarIcon use="more_vert" style={{ marginTop: '-20px' }} />
@@ -119,7 +119,7 @@ class Header extends Component {
           </ToolbarSection>
         </ToolbarRow>
         <Fragment>
-          <ToolbarRow>
+          <ToolbarRow style={{minHeight:"54px"}}>
             <Switch>
               <Route
                 path="/absence/create"

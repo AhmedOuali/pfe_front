@@ -20,7 +20,7 @@ import {
 import Toggle from 'material-ui/Toggle'
 import { ToolbarFixedAdjust } from 'rmwc/Toolbar'
 import FontIcon from 'material-ui/FontIcon'
-import Attente from './attente'
+import Attente from './attente/attente'
 import Historique from './historique/historique'
 import Notifications from './notifications'
 import Create from './create/create'

@@ -9,6 +9,7 @@ import * as workspaceActionCreators from '../../store/actions/workspace'
 class Workspace extends Component {
   componentDidMount() {
     navigator.serviceWorker.addEventListener('message', event => {
+      console.log('message recieved')
       var send = true
       this.props.notifications.map(notification => {
         if (event.data.id == notification.id) {

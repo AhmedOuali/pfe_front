@@ -43,7 +43,7 @@ const MAX_TTL = {
 
 const CACHE_BLACKLIST = [
     (str) => {
-     return !str.startsWith('localhost')
+    //  return !str.startsWith('http://10.74.31.37')
     },
 ];
 
@@ -402,6 +402,7 @@ self.addEventListener('push', (e) => {
 
     // Get the client.
     const client = await clients.get(e.clientId);
+    console.log(client)
     // Exit early if we don't get the client.
     // Eg, if it closed.
     if (!client) return;

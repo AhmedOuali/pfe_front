@@ -28,7 +28,7 @@ const HeaderTop = props => {
     )
   }
   return (
-    <TabBar activeTabIndex={props.tab} style={{ width: '100%' }}>
+    <TabBar activeTabIndex={props.tab} style={{ width: '100%', height:"54px" }}>
       <TabBarElement path="/absence/accueil" name="Accueil" icon="home" />
       <TabBarElement
         path="/absence/attente"

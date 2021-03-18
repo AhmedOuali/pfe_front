@@ -3,16 +3,17 @@ import * as Application from '../../Application'
 import * as headerActionCreators from './header'
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import * as constants from '../../constants'
 
 var filterData = data => {
   var id = 0
-  const createData = (nudoss, name, calories, fat, carbs, protein) => {
+  const createData = (nudoss, name, calories, fat, carbs, protein, NULIGN) => {
     id += 1
-    return { nudoss, id, name, calories, fat, carbs, protein }
+    return { nudoss, id, name, calories, fat, carbs, protein, NULIGN }
   }
   var nudoss
   var result = data.occurrences.occurrence
-    .filter(element => element['@datasection'] == 'ZYAG')
+    .filter(element => element['@datasection'] == 'ZYAG' )
     .map(element => {
       nudoss = element['@dossier']
       return element.data
@@ -24,7 +25,8 @@ var filterData = data => {
           occ.item == 'DATDEB' ||
           occ.item == 'MOTIFA_EXT' ||
           occ.item == 'TEMDEB' ||
-          occ.item == 'TEMFIN'
+          occ.item == 'TEMFIN' ||
+          occ.item == 'NULIGN'
       )
     })
 
@@ -43,7 +45,8 @@ var filterData = data => {
       element.DATDEB,
       element.TEMDEB,
       element.DATFIN,
-      element.TEMFIN
+      element.TEMFIN,
+      element.NULIGN
     )
   })
   return dataTable
@@ -51,8 +54,42 @@ var filterData = data => {
 
 //Actions
 //assynch calls (fetch)
+
+const getPushManagerSubscription = () => {
+  
+ 
+} 
+
+const subscribeToNotificationServer = (data) => {
+  var sub = null
+  return navigator.serviceWorker.ready
+  .then((registration) => { 
+    return registration.pushManager.getSubscription();
+  }).then((subscription) => {
+    console.log('test it', subscription)
+    fetch(constants.PUSH_SERVER_ADRR+'subscribe', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({ 
+        subscription: subscription, 
+        name: data.username, 
+        fetchServerData: data.fetchServerData }),
+    }).then(resp => resp.json())
+      .then(res => {
+        if (res.status == "OK") {
+          console.log('inscrit au serveur de notification')
+        }
+      })
+  });
+  
+
+}
+
 export const gpitConnect = user => {
-  return dispatch => {
+  return (dispatch, getState) => {
     var parser = new DOMParser()
     var data = {
       username: user.username, //'IELFELLF'
@@ -65,21 +102,32 @@ export const gpitConnect = user => {
     var headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Accept-Language': 'fr-FR',
+      'Accept-Language': 'fr-FR'
     }
 
+
     var loginPath =
-      'http://localhost:8080/hr-business-services-rest/business-services/login'
+    constants.BASE_ADRESS+'login'
 
     fetch(loginPath, {
+      mode :'cors',
       credentials: 'include',
       headers: headers,
       method: 'POST',
       body: JSON.stringify(data),
     })
       .then(resp => resp.json())
-      .then(function(res) {
+      .then((res) => {
         dispatch(setGpitConnectResult(res))
+        subscribeToNotificationServer ({
+          username: data.username,
+          fetchServerData: {
+            userName: data.username,
+            password: data.password,
+            isManager: String(getState().applicationApi.isAdmin.length>0),
+            isEmployee: String(getState().applicationApi.isEmployee.length>0)
+          }
+        })
         dispatch(searchForUserName(res))
       })
       .catch(function(err) {
@@ -96,23 +144,16 @@ export const creerAbsence = data => {
       'Accept-Language': 'fr-FR',
     }
     var loginPath =
-      'http://localhost:8080/hr-business-services-rest/business-services/gp/FSW0AGE0?roleModel=EMPLOYEE&startpop=' +
+      constants.BASE_ADRESS+'gp/FSW0AGE0?roleModel=EMPLOYEE&startpop=' +
       getState().applicationApi.isEmployee[0]['@dossierID']
 
-    fetch(loginPath, {
+    return fetch(loginPath, {
       credentials: 'include',
       headers: headers,
       method: 'POST',
       body: JSON.stringify(data),
     })
-      .then(resp => resp.json())
-      .then(res => {
-        console.log('success of creation')
-      })
-      .catch(function(err) {
-        console.log(err)
-        console.log('creation Failed')
-      })
+      
   }
 }
 
@@ -124,7 +165,7 @@ export const searchForCollaborators = () => {
       'Accept-Language': 'fr-FR',
     }
     var loginPath =
-      'http://localhost:8080/hr-business-services-rest/business-services/gp/FSCSALE6/startpopulation/dossiers?roleModel=MMGRHIE'
+      constants.BASE_ADRESS+'gp/FSCSALE6/startpopulation/dossiers?roleModel=MMGRHIE'
 
     fetch(loginPath, {
       credentials: 'include',
@@ -141,7 +182,7 @@ export const searchForCollaborators = () => {
             'Accept-Language': 'fr-FR',
           }
           let personnalPath =
-            'http://localhost:8080/hr-business-services-rest/business-services/gp/JACSALE1?roleModel=MMGRHIE&startpop=' +
+            constants.BASE_ADRESS+'gp/JACSALE1?roleModel=MMGRHIE&startpop=' +
             element['@nudoss']
           fetch(personnalPath, {
             credentials: 'include',
@@ -190,16 +231,22 @@ export const searchForCollaborators = () => {
 }
 
 export const searchForUserName = data => {
-  return dispatch => {
+  return (dispatch,getState) => {
     var headers = {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'Accept-Language': 'fr-FR',
     }
+    console.log("here", getState().applicationApi)
+    if(getState().applicationApi.isEmployee.length>0) {
+      var loginPath =
+      constants.BASE_ADRESS+'gp/JACSALE1?roleModel=EMPLOYEE&startpop=' +
+      getState().applicationApi.isEmployee[0]['@dossierID']
+    }
     var isEmployee
     isEmployee = data.roles.role.filter(role => role['@category'] == 'SSEMP')
     var loginPath =
-      'http://localhost:8080/hr-business-services-rest/business-services/gp/JACSALE1?roleModel=EMPLOYEE&startpop=' +
+      constants.BASE_ADRESS+'gp/JACSALE1?roleModel=EMPLOYEE&startpop=' +
       isEmployee[0]['@dossierID']
 
     fetch(loginPath, {
@@ -233,7 +280,7 @@ export const searchForPersonnalHistory = data => {
     }
 
     var HistoryPath =
-      'http://localhost:8080/hr-business-services-rest/business-services/gp/ASCSALE6?roleModel=EMPLOYEE&startpop=' +
+      constants.BASE_ADRESS+'gp/ASCSALE6?roleModel=EMPLOYEE&startpop=' +
       getState().applicationApi.isEmployee[0]['@dossierID']
 
     fetch(HistoryPath, {
@@ -262,7 +309,7 @@ export const searchForCollaboratorsHistory = data => {
     }
     var collaboratorsHistory = []
     var collPath =
-      'http://localhost:8080/hr-business-services-rest/business-services/gp/ASCSALE6?roleModel=MMGRHIE'
+    constants.BASE_ADRESS+'gp/ASCSALE6?roleModel=MMGRHIE'
     fetch(collPath, {
       credentials: 'include',
       headers: headers,
@@ -271,6 +318,169 @@ export const searchForCollaboratorsHistory = data => {
       .then(resp => resp.json())
       .then(res => {
         dispatch(setCollaboratorsHistory(filterData(res)))
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
+  }
+}
+
+export const searchForManagerTasks = data => {
+  return dispatch => {
+    var headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Accept-Language': 'fr-FR',
+    }
+    var collaboratorsHistory = []
+    var requestsPath =
+      constants.BASE_ADRESS+'tasks?roleModel=MMGRHIE'
+    fetch(requestsPath, {
+      credentials: 'include',
+      headers: headers,
+      method: 'GET',
+    })
+      .then(resp => resp.json())
+      .then(res => {
+        console.log(res)
+        dispatch(setManagerTasks(res.task.filter(task => task["@gpId"] == "FSW0AGE0" || task["@gpId"] == "FSW0AGE1")))
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
+  }
+}
+
+export const searchForRequests = data => {
+  return dispatch => {
+    var headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Accept-Language': 'fr-FR',
+    }
+    var collaboratorsHistory = []
+    var requestsPath =
+      constants.BASE_ADRESS+'requests?roleModel=EMPLOYEE'
+    fetch(requestsPath, {
+      credentials: 'include',
+      headers: headers,
+      method: 'GET',
+    })
+      .then(resp => resp.json())
+      .then(res => {
+        console.log(res)
+        dispatch(setRequests(res.request.filter(request => (request["@gpID"] == "FSW0AGE0" || request["@gpID"] == "FSW0AGE1") && request["@status"]=="En cours")))
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
+  }
+}
+
+export const searchForRequestsToCancel = data => {
+    return (dispatch, getState) => {
+      var headers = {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Accept-Language': 'fr-FR',
+      }
+      var collaboratorsHistory = []
+      var requestsToCancel = 
+      constants.BASE_ADRESS+'gp/FSW0AGE1?roleModel=EMPLOYEE&startpop='+getState().applicationApi.isEmployee[0]['@dossierID']
+      fetch(requestsToCancel, {
+        credentials: 'include',
+        headers: headers,
+        method: 'GET',
+      })
+        .then(resp => resp.json())
+        .then(res => {
+          dispatch(setRequestsToCancel(filterData(res)))
+        })
+        .catch(function(err) {
+          console.log(err)
+        })
+    }
+  }
+
+export const cancelRequest = data => {
+  return (dispatch, getState) => {
+    var headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Accept-Language': 'fr-FR',
+    }
+    var body =
+      {
+        "occurrences":
+          {
+            "occurrence":
+              [
+                {
+                  "@action": "D",
+                  "@datasection": "ZYAG",
+                  "@domain": "DOML0SAL-Final",
+                  "@dossier": getState().applicationApi.isEmployee[0]['@dossierID'],
+                  "@population": "POPL0SAL-Final",
+                  "data": [
+                    {
+                      "item": "NULIGN",
+                      "value": data
+                    }
+                  ]
+
+                }
+              ]
+          }
+      }
+    var collaboratorsHistory = []
+    var requestsToCancel = 
+    constants.BASE_ADRESS+'gp/FSW0AGE1?roleModel=EMPLOYEE&startpop='+getState().applicationApi.isEmployee[0]['@dossierID']
+    fetch(requestsToCancel, {
+      credentials: 'include',
+      headers: headers,
+      method: 'POST',
+      body: JSON.stringify(body)
+    })
+      .then(resp => resp.json())
+      .then(res => {
+        if(res.status == "OK"){
+          dispatch(setRequestsToCancel(getState().applicationApi.requestsToCancel.filter(request => request.NULIGN != data)))
+          alert("Demande annulée avec succés")
+        }
+        if(res.status == "FAILURE"){
+          console.log("Demande annulation echoué")
+        }
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
+  }
+}
+
+export const deleteRequest = data => {
+  return (dispatch, getState) => {
+    var headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Accept-Language': 'fr-FR',
+    }
+    var collaboratorsHistory = []
+    var requestsToCancel = 
+      constants.BASE_ADRESS+data["@detail"]+'&delete=true'
+    fetch(requestsToCancel, {
+      credentials: 'include',
+      headers: headers,
+      method: 'GET',
+    })
+      .then(resp => resp.json())
+      .then(res => {
+        if(res.status == "OK") {
+          dispatch(setRequests(getState().applicationApi.requests.filter(request => request["@id"] != data["@id"])))
+          console.log("supprimé avec succès")
+        }
+        if(res.status == "FAILURE") {
+          console.log("FAILURE")
+        }
       })
       .catch(function(err) {
         console.log(err)
@@ -318,5 +528,26 @@ export const setCollaboratorsHistory = data => {
   return {
     type: actionTypes.SET_COLLABORATORS_HISTORY,
     data: data,
+  }
+}
+
+export const setManagerTasks = data => {
+  return {
+    type: actionTypes.SET_MANAGER_TASKS,
+    data: data,
+  }
+}
+
+export const setRequests = data => {
+  return {
+    type: actionTypes.SET_REQUESTS,
+    data: data,
+  }
+}
+
+export const setRequestsToCancel = data => {
+  return {
+    type: actionTypes.SET_REQUESTS_TO_CANCEL,
+    data: data
   }
 }

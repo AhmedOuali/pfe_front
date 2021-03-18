@@ -93,8 +93,7 @@ class Home extends Component {
                 tag="p"
                 theme="text-secondary-on-background"
               >
-                , Copper price soars amid global market optimism and increased
-                demand.
+                Le processus de recrutement renvoie à l'ensemble des moyens par lesquels on incite des personnes susceptibles d'occuper un poste dans l'organisation à poser leur candidature.
               </Typography>
             </div>
           </CardPrimaryAction>
@@ -125,8 +124,7 @@ class Home extends Component {
                 tag="p"
                 theme="text-secondary-on-background"
               >
-                , Copper price soars amid global market optimism and increased
-                demand.
+                Ce module propose une interface de demande d'absence avec affichage des soldes pour les utilisateurs et processus de validation.
               </Typography>
             </div>
           </CardPrimaryAction>
@@ -135,7 +133,7 @@ class Home extends Component {
     }
     return (
       <Fragment>
-        <Toolbar id="Toolbar" style={{ backgroundColor: '#d1021a' }} fixed>
+        <Toolbar id="Toolbar" style={{ backgroundColor: 'rgb(56, 90, 161)' }} fixed>
           <ToolbarRow>
             <ToolbarSection alignStart>
               <ToolbarMenuIcon>
@@ -169,7 +167,7 @@ class Home extends Component {
         <ToolbarFixedAdjust>
           <div
             style={{
-              backgroundColor: 'rgb(242, 115, 8)',
+              backgroundColor: 'rgb(74, 111, 163)',
               zIndex: '0',
               height: '130px',
               paddingTop: '1px',

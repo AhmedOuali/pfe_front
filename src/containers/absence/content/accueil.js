@@ -13,6 +13,12 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import AddIcon from '@material-ui/icons/Add'
 import ClearIcon from '@material-ui/icons/Clear'
+import CopyrightIcon from '@material-ui/icons/Copyright'
+import FeaturedPlayList from '@material-ui/icons/FeaturedPlayList'
+import History from '@material-ui/icons/History'
+import AccountBox from '@material-ui/icons/AccountBox'
+import Info from '@material-ui/icons/Info'
+
 import * as headerActionCreators from '../../../store/actions/header'
 
 import { connect } from 'react-redux'
@@ -50,32 +56,32 @@ class Accueil extends Component {
           <Link to="/absence/annulation_absence" style={linkStyle}>
             <ListItem button>
               <ListItemIcon>
-                <ClearIcon />
+                <CopyrightIcon />
               </ListItemIcon>
               <ListItemText primary="Annulation d'absence" />
             </ListItem>
           </Link>
           <ListItem button>
             <ListItemIcon>
-              <ClearIcon />
+              <AccountBox />
             </ListItemIcon>
             <ListItemText primary="Mon planning d'absences" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <ClearIcon />
+              <FeaturedPlayList />
             </ListItemIcon>
             <ListItemText primary="Planning d'equipe" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <ClearIcon />
+              <History />
             </ListItemIcon>
             <ListItemText primary="Historique des absence" />
           </ListItem>
           <ListItem button>
             <ListItemIcon>
-              <ClearIcon />
+              <Info />
             </ListItemIcon>
             <ListItemText primary="Consultation des soldes" />
           </ListItem>
@@ -88,22 +94,18 @@ class Accueil extends Component {
         <Fragment>
           <ListItem button>
             <ListItemIcon>
-              <AddIcon />
+              <FeaturedPlayList />
             </ListItemIcon>
             <ListItemText primary="Planning d'équipe" />
-          </ListItem>
+            </ListItem>
+            <Link to="/absence/historique" style={linkStyle}>
           <ListItem button>
             <ListItemIcon>
-              <ClearIcon />
+              <History />
             </ListItemIcon>
             <ListItemText primary="Historique des absences" />
           </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <ClearIcon />
-            </ListItemIcon>
-            <ListItemText primary="Mon planning d'absences" />
-          </ListItem>
+          </Link>
         </Fragment>
       )
     }

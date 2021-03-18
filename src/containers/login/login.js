@@ -12,11 +12,15 @@ import {
   ToolbarIcon,
   ToolbarFixedAdjust,
 } from 'rmwc/Toolbar'
-import { Button, ButtonIcon } from 'rmwc/Button'
+import { ButtonIcon } from 'rmwc/Button'
 import { Icon } from 'rmwc/Icon'
-import { Grid, GridCell } from 'rmwc/Grid'
+import Button from '@material-ui/core/Button';
 
-import { TextField } from 'rmwc/TextField'
+
+
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 class Login extends Component {
   constructor(props) {
@@ -54,14 +58,61 @@ class Login extends Component {
 
   render() {
     return (
+      
       <Fragment>
-        <Toolbar style={{ backgroundColor: '#d1021a' }}>
+        <Toolbar style={{ backgroundColor: 'rgb(56, 90, 161)' }}>
           <ToolbarRow>
             <ToolbarTitle style={{ fontSize: '2.25rem' }}>Login</ToolbarTitle>
           </ToolbarRow>
         </Toolbar>
         <ToolbarFixedAdjust>
-          <Grid>
+        <Grid container spacing={24}>
+        <Grid item xs={1}>
+        </Grid>
+        <Grid item xs={10}>
+          <Paper ><Typography use="title">
+                <center  style={{marginBottom: "20px"}}><Icon strategy="ligature" use="info_outline"  style={{marginTop: "20px"}}/><br/>
+                Veuillez saisir votre login et mot de passe pour vous connecter</center>
+              </Typography>
+              <Grid item xs={12}>
+              <center><TextField
+                id="USER"
+                value={this.state.user}
+                onChange={this.handleChange}
+                label="Identifiant"
+                type="text"
+                autoComplete="current-user"
+                margin="normal"
+              /></center>
+              </Grid>
+              <Grid item xs={12}>
+              <center><TextField
+                id="PASS"
+                label="Mot de passe"
+                value={this.state.password}
+                onChange={this.handleChange}
+                type="password"
+                autoComplete="current-password"
+                margin="normal"
+              /></center>
+              </Grid>
+              <Grid item xs={12}>
+              <center><Button 
+                        style={{backgroundColor: "#00000014", marginTop: "40px", marginBottom: "20px"}}
+                        onClick={this.handleSubmit}>
+                  Se connecter
+                </Button></center>
+              </Grid>
+          </Paper>
+        </Grid>
+        
+      
+        <Grid item xs={1}>
+        </Grid>
+        
+        
+      </Grid>
+          {/* <Grid>
             <GridCell span="4">
               <Typography use="title">
                 <Icon strategy="ligature" use="info_outline" />
@@ -98,7 +149,7 @@ class Login extends Component {
                 Se Connecter
               </Button>
             </GridCell>
-          </Grid>
+          </Grid> */}
         </ToolbarFixedAdjust>
       </Fragment>
     )

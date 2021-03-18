@@ -1,0 +1,15 @@
+[debug] [2018-06-25T10:55:18.474Z] ----------------------------------------------------------------------
+[debug] [2018-06-25T10:55:18.477Z] Command:       C:\Program Files\nodejs\node.exe D:\Profiles\awali\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2018-06-25T10:55:18.478Z] CLI Version:   3.18.4
+[debug] [2018-06-25T10:55:18.478Z] Platform:      win32
+[debug] [2018-06-25T10:55:18.478Z] Node Version:  v8.11.1
+[debug] [2018-06-25T10:55:18.479Z] Time:          Mon Jun 25 2018 11:55:18 GMT+0100 (Paris, Madrid)
+[debug] [2018-06-25T10:55:18.479Z] ----------------------------------------------------------------------
+[debug] 
+[error] 
+[error] Error: No project active, but project aliases are available.
+
+Run firebase use <alias> with one of these options:
+
+  default (pfe-hr)
+  pfe-hr (pfe-hr)

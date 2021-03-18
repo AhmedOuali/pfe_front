@@ -1,9 +1,9 @@
 {
-  "short_name": "Embauche_HR",
-  "name": "GPIT_EMBAUCHE_HR",
+  "short_name": "Progressive HRa",
+  "name": "Progressive HRa",
   "icons": [
     {
-      "src": "log-144x144.png",
+      "src": "phra.png",
       "sizes": "144x144",
       "type": "image/png"
     }

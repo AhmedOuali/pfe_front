@@ -3,7 +3,18 @@ var express = require('express');
 var app = express();
 var cons = require('consolidate');
 var path = require('path')
-
+var fs = require('fs');
+var key = fs.readFileSync('./server.key');
+var cert = fs.readFileSync( './server.crt' );
+var ca = fs.readFileSync( './server.csr' );
+var options = {
+  key: key,
+  cert: cert,
+  ca: ca,
+  passphrase: '32323232'
+};
+var https = require('https');
+const PORT = 3001
 app.use(express.static('public'));
 app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'public'));
@@ -18,11 +29,19 @@ app.use((req,res,next)=> {
   next()
 })
 
+app.use("/hr-business-services-rest/business-services/", function(req,res,next){
+  
+})
+
+
 app.use('/', function (req, res, next) {
+  console.log('r')
   res.render('index', { title: 'Express' });
 })
 
 
-app.listen(3001, function () {
-  console.log('Express server is up on port 3000');
+// https.createServer(options, app).listen(PORT);
+
+app.listen(PORT, function () {
+  console.log('Express server is up on port ',PORT);
 });

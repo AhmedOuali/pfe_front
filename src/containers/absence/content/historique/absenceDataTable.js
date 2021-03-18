@@ -7,7 +7,7 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
-
+import Grid from '@material-ui/core/Grid';
 const CustomizedTable = props => {
   const CustomTableCell = withStyles(theme => ({
     head: {
@@ -25,6 +25,7 @@ const CustomizedTable = props => {
   }
 
   return (
+    <Grid item xs={12}>
     <Paper>
       <Table>
         <TableHead>
@@ -48,8 +49,10 @@ const CustomizedTable = props => {
                 {props.selectedRole == 'admin' ? (
                   <CustomTableCell numeric>
                     {
-                      props.collaborators !== undefined?
+                      props.collaborators.length >0?
                       props.collaborators.filter(
+                        collaborator => collaborator.nudoss == n.nudoss
+                      )[0]===undefined?n.nudoss:props.collaborators.filter(
                         collaborator => collaborator.nudoss == n.nudoss
                       )[0]['NMPRES']:n.nudoss
                     }
@@ -70,6 +73,7 @@ const CustomizedTable = props => {
         </TableBody>
       </Table>
     </Paper>
+    </Grid>
   )
 }
 

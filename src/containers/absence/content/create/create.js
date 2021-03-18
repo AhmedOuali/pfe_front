@@ -31,7 +31,7 @@ class Create extends Component {
       var s = event.target.value
       if (s) {
         s = s.replace(/(\d{4})-(\d{1,2})-(\d{1,2})/, function(match, y, m, d) {
-          return m + '/' + d + '/' + y
+          return y + '/' + m + '/' + d
         })
       }
       this.setState({ [name]: s })
@@ -109,7 +109,7 @@ class Create extends Component {
               <TextField
                 style={{ display: 'flex', marginTop: '30px' }}
                 id="date"
-                label="Birthday"
+                label="Dernier jour *"
                 type="date"
                 onChange={this.handleChange('dernier')}
                 InputLabelProps={{
@@ -148,4 +148,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(applicationApisActionCreators.creerAbsence(absence)),
   }
 }
+
+
 export default connect(mapStateToProps, mapDispatchToProps)(Create)
